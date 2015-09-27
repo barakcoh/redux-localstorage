@@ -3,11 +3,10 @@ import bufferActions from './bufferActions.js';
 import actionTypes from './actionTypes.js';
 import adapter from './adapters/localStorage';
 
-const defaultStorage = adapter(localStorage);
 const defaultKey = 'redux-localstorage';
 
 /**
- * @description
+ * @descriptiond
  * persistState is a Store Enhancer that persists store changes.
  *
  * @param {Object} [storage = adapter(localStorage)] Object used to interface with any type of storage back-end.
@@ -16,8 +15,9 @@ const defaultKey = 'redux-localstorage';
  *
  * @returns {Function} An enhanced create store function.
  */
-export default function persistState(storage = defaultStorage, key = defaultKey, callback) {
-  let finalStorage = storage;
+export default function persistState(storage, key = defaultKey, callback) {
+  let defaultStorage = adapter(localStorage);
+  let finalStorage = storage || defaultStorage;
   let finalKey = key;
   let finalCallback = callback;
 
